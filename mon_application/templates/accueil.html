@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div id="form-container">
+    <div class="form-group">
+        <input type="text" name="field1" placeholder="Champ 1">
+        <input type="text" name="field2" placeholder="Champ 2">
+        <input type="text" name="field3" placeholder="Champ 3">
+    </div>
+</div>
+<button id="add-button">Ajouter des champs</button>
+
+<script>
+    document.getElementById('add-button').addEventListener('click', function() {
+        // Créer un nouvel ensemble de champs
+        const newFields = document.createElement('div');
+        newFields.className = 'form-group';
+        newFields.innerHTML = `
+            <input type="text" name="field1" placeholder="Champ 1">
+            <input type="text" name="field2" placeholder="Champ 2">
+            <input type="text" name="field3" placeholder="Champ 3">
+        `;
+        // Ajouter le nouvel ensemble de champs au conteneur de formulaire
+        document.getElementById('form-container').appendChild(newFields);
+    });
+</script>
+<!-- AdminLTE App -->
+
+{% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load  static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Connexion</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link  href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- font Awesome 
+                <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        -->
+
+
+    </head>
+    <body>
+
+  
+  <!-- Pills content -->
+  <div class="tab-content" style="width: 25%;   margin: 12%  auto 0px;">
+    <div style="
+    background: #3f42416e;padding: 1rem;" >
+    <form  method="POST" action="/accounts/login/">
+      {% csrf_token %}
+  
+        <div class="text-center mb-3">
+          <h4>Connexion</h4>
+        
+        </div>
+
+        <div class="text-center mb-3" style=" position: absolute;font-size: 30rem;
+        color: #37bf7bbf; z-index: -1000; margin-top: -21%; margin-left: -30%;">
+           SCDP
+          
+          </div>
+        
+ 
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="loginName">Email</label>
+          <input type="text"  name="username" id="username" class="form-control" />
+        </div>
+  
+        <!-- Password input -->
+        <div  class="form-outline mb-4">
+          <label class="form-label" for="loginPassword">Mot de passe</label>
+          <input type="password" name="password" id="password" class="form-control" />
+        </div>
+  
+     
+  
+        <!-- Submit button -->
+        <div  class="form-outline mb-4">
+        <button type="submit" class="btn btn-success form-control">Se connecter</button>
+        </div>
+        <!-- Register buttons -->
+      
+      </form>
+    </div>
+  
+  </div>
+  <!-- Pills content -->
+    </body>
