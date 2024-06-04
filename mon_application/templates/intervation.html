@@ -1,0 +1,24 @@
+{% extends 'baseAdmin.html' %}
+{% load static %}
+{% block content %}
+<!-- Ajoutez le formulaire de création d'agence dans la page show_agences.html -->
+<aside class="right-side"> 
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAgenceModal">
+                    Ajouter une intervation
+                </button>
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Intervation</h3>                                    
+                    </div><!-- /.box-header -->
+                 
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+</aside><!-- /.right-side -->
+
+{% endblock %}

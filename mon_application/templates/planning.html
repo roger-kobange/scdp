@@ -1,0 +1,53 @@
+{% extends 'baseAdmin.html' %}
+{% load static %}
+{% block content %}
+<!-- Ajoutez le formulaire de création d'agence dans la page show_agences.html -->
+<aside class="right-side"> 
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAgenceModal">
+                    Ajouter un planning
+                </button>
+                <div class="box">
+                 
+                    <section class="col-lg-11 connectedSortable">
+                           
+                        <!-- Calendar -->
+                        <div class="box box-warning">
+                          <div class="box-header">
+                              <i class="fa fa-calendar"></i>
+                              <div class="box-title">Planning de travail</div>
+                              
+                              <!-- tools box -->
+                              <div class="pull-right box-tools">
+                                  <!-- button with a dropdown -->
+                                  <div class="btn-group">
+                                      <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+                                      <ul class="dropdown-menu pull-right" role="menu">
+                                          <li><a href="#">Add new event</a></li>
+                                          <li><a href="#">Clear events</a></li>
+                                          <li class="divider"></li>
+                                          <li><a href="#">View calendar</a></li>
+                                      </ul>
+                                  </div>
+                              </div><!-- /. tools -->                                    
+                          </div><!-- /.box-header -->
+                          <div class="box-body no-padding">
+                              <!--The calendar -->
+                              <div id="calendar"></div>
+                          </div><!-- /.box-body -->
+                      </div><!-- /.box -->
+                   
+                     
+
+                  </section><!-- right col --> 
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section><!-- /.content -->
+</aside><!-- /.right-side -->
+
+{% endblock %}

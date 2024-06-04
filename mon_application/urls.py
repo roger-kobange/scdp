@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from .views import CreateMachineView
 
 
 urlpatterns = [
@@ -19,5 +18,13 @@ urlpatterns = [
     path('delete_machine/<int:id>/', views.delete_machine, name='delete_machine'),# Ajoutez cette ligne
 
     path('techniciens/', views.technicien_list, name='technicien-list'),
+    path('create_technicien/', views.create_technicien, name='create_machine'), 
+    path('edit_technicien/<int:id>/', views.edit_technicien, name='edit_machine'),
+    path('update_technicien/<int:id>/', views.update_technicien, name='update_machine'),
+    path('delete_technicien/<int:id>/', views.delete_technicien, name='delete_machine'),# Ajoutez cette ligne
+
+
+    path('plannings/', views.plannings, name='plannings'),
+    path('intervations/', views.intervations, name='intervations'),
     
 ]

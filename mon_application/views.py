@@ -95,43 +95,20 @@ def create_machine(request):
     return render(request, 'machine_list.html', {'form': form})
 
     
-class CreateMachineView(CreateView):
-    model = Machine
-    form_class = MachineForm
-    template_name = 'machine_list.html'  # Utilisez le même template ou un différent si nécessaire
-    success_url = '/machines/'  # Modifiez selon vos besoins
-
     
 def user_list(request):
     users = User_c.objects.all()
     form = User_cForm()  # Créez une instance du formulaire
     return render(request, 'machine_list.html', {'users': users, 'form': form})
-   
-def technicien_list(request):
-    techniciens = Technicien.objects.all()
-    form = TechnicienForm()  # Créez une instance du formulaire
-    return render(request, 'machine_list.html', {'techniciens': techniciens, 'form': form})
 
-def create_technicien(request):
-    if request.method == "POST":
-        form = TechnicienForm(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                messages.success(request, "Technicien créée avec succès!")
-                return redirect('/techniciens/')
-            except:
-                messages.error(request, "Quelque chose s'est mal passé lors de la création de l'agence!")
-    else:
-        form = TechnicienForm()  # Si la requête n'est pas POST, créez simplement une nouvelle instance du formulaire
-
-    return render(request, 'technicien_list.html', {'form': form})
 
 
 def edit_machine(request, id):
     machine = get_object_or_404(Machine, id=id)
     form = MachineForm(instance=machine)
-    form_data = model_to_dict(form.instance)  # Convertir l'instance de modèle en dictionnaire
+    form_data = model_to_dict(machine, exclude=['photo'])  # Exclure le champ 'photo'
+    if machine.photo:
+        form_data['photo_url'] = machine.photo.url  # Ajouter l'URL de la photo si elle existe
     return JsonResponse(form_data)
 
 def update_machine(request, id):
@@ -148,3 +125,57 @@ def delete_machine(request, id):
     client.delete()
     messages.success(request, 'La machine a été supprimé avec succès!')
     return redirect('/machines/')
+
+   
+def technicien_list(request):
+    techniciens = Technicien.objects.all()
+    form = TechnicienForm()  # Créez une instance du formulaire
+    return render(request, 'technicien_list.html', {'techniciens': techniciens, 'form': form})
+
+
+def create_technicien(request):
+    if request.method == "POST":
+        form = TechnicienForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                messages.success(request, "Technicien créée avec succès!")
+                return redirect('/techniciens/')
+            except:
+                messages.error(request, "Quelque chose s'est mal passé lors de la création de l'agence!")
+    else:
+        form = TechnicienForm()  # Si la requête n'est pas POST, créez simplement une nouvelle instance du formulaire
+
+    return render(request, 'technicien_list.html', {'form': form})
+
+def edit_technicien(request, id):
+    technicien = get_object_or_404(Technicien, id=id)
+    form = TechnicienForm(instance=technicien)
+    form_data = model_to_dict(technicien, exclude=['photo_profil'])  # Exclure le champ 'photo'
+    if technicien.photo_profil:
+        form_data['photo_profil_url'] = technicien.photo_profil.url # Ajouter l'URL de la photo si elle existe
+    return JsonResponse(form_data)
+
+def update_technicien(request, id):
+    technicien = get_object_or_404(Technicien, id=id)
+    form = TechnicienForm(request.POST or None, request.FILES or None, instance=technicien)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Client mis à jour avec succès!')
+        return redirect('/techniciens/')
+    return render(request, 'technicien_list.html', {'form': form, 'client': technicien})
+
+def delete_technicien(request, id):
+    technicien = get_object_or_404(Technicien, id=id)
+    technicien.delete()
+    messages.success(request, 'La machine a été supprimé avec succès!')
+    return redirect('/techniciens/')
+
+def plannings(request):
+
+    return render(request, 'planning.html')
+
+
+def intervations(request):
+    
+    return render(request, 'intervation.html')

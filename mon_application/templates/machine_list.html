@@ -108,7 +108,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editAgenceForm" method="post"  action="">
+            <form id="editMachineForm" method="post"  action="">
                 {% csrf_token %}
                 <div class="modal-body">
                     <!-- Champs de formulaire pour la mise à jour de l'agence -->
@@ -214,7 +214,7 @@
         $('#confirmDeleteButton').click(function() {
             var agenceId = $(this).attr('data-id');
             // Envoyer la demande de suppression à l'aide de l'identifiant stocké
-            window.location.href = '/delete_agence/' + agenceId + '/';
+            window.location.href = '/delete_machine/' + agenceId + '/';
         });
     });
 </script>

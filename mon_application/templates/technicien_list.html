@@ -31,7 +31,7 @@
                                     
                                     <th>Addresse</th>
                               
-                                    <th>Telephone</th>
+                                  
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -81,7 +81,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" id="emplacementForm" action="/create_agence/">
+            <form method="post" id="emplacementForm" action="/create_technicien/">
                 {% csrf_token %} <!-- Ajout de l'attribut method et de l'ID -->
                 <div class="modal-body">
                     <div class="col-md-12">
@@ -188,30 +188,35 @@
             console.log('Identifiant de l\'agence : ', agenceId);
 
             // Mettre à jour l'action du formulaire avec l'ID de l'agence
-            editAgenceForm.attr('action', `/update_agence/${agenceId}/`);
+            editAgenceForm.attr('action', `/update_technicien/${agenceId}/`);
 
             // Appeler la vue Django pour récupérer les données de l'agence
-            fetch(`/edit_agence/${agenceId}/`)
+            fetch(`/edit_technicien/${agenceId}/`)
                 .then(response => response.json()) // Convertir la réponse en JSON
                 .then(data => {
                     // Afficher toutes les données de l'agence dans la console
                     console.log('Données de l\'agence : ', data);
 
                     // Remplir les champs du formulaire avec les données de l'agence
-                    $('#editAgenceForm input[name="nom"]').val(data.nom);
-                    $('#editAgenceForm input[name="ville"]').val(data.ville);
-                    $('#editAgenceForm input[name="province"]').val(data.province);
-                    $('#editAgenceForm input[name="commune"]').val(data.commune);
-                    $('#editAgenceForm input[name="territoire"]').val(data.territoire);
-                    $('#editAgenceForm input[name="adresse"]').val(data.adresse);
-                    $('#editAgenceForm input[name="telephone"]').val(data.telephone);
+                    $('#editAgenceForm input[name="username"]').val(data.username);
+                    $('#editAgenceForm input[name="first_name"]').val(data.first_name);
+                    $('#editAgenceForm input[name="last_name"]').val(data.last_name); // Assurez-vous que le champ 'prenom' existe
+                    $('#editAgenceForm input[name="email"]').val(data.email); // Assurez-vous que le champ 'email' existe
+                    $('#editAgenceForm input[name="contact"]').val(data.contact); // Assurez-vous que le champ 'contact' existe
+                    $('#editAgenceForm input[name="fonction"]').val(data.fonction); // Assurez-vous que le champ 'fonction' existe
+                    $('#editAgenceForm input[name="adresse"]').val(data.adresse); // Assurez-vous que le champ 'adresse' existe
+                    $('#editAgenceForm input[name="pays"]').val(data.pays); // Assurez-vous que le champ 'pays' existe
+                    if (data.photo_profil_url) { // Vérifiez si l'URL de la photo de profil est disponible
+                        $('#editAgenceForm img[name="photo_profil"]').attr('src', data.photo_profil_url); // Assurez-vous que l'élément img pour la photo de profil existe
+                    
 
                     // Ajoutez d'autres champs ici
 
-                })
-                .catch(error => {
-                    console.error('Erreur lors de la récupération des données de l\'agence : ', error);
-                });
+                                }
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de la récupération des données de l\'agence : ', error);
+                    });
         });
     });
 </script>
@@ -227,7 +232,7 @@
         $('#confirmDeleteButton').click(function() {
             var agenceId = $(this).attr('data-id');
             // Envoyer la demande de suppression à l'aide de l'identifiant stocké
-            window.location.href = '/delete_agence/' + agenceId + '/';
+            window.location.href = '/delete_technicien/' + agenceId + '/';
         });
     });
 </script>
