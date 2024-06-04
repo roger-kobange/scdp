@@ -34,10 +34,10 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'You have been logged in successfully')
-            return redirect('/')
+            return redirect('/home')
         else:
             messages.warning(request, "Username or Password is incorrect !!")
-            return redirect('/accounts/login/')
+            return redirect('/login/')
     else:
         return render(request, 'login.html')
 
